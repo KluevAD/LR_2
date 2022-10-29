@@ -79,3 +79,62 @@ void __fastcall TForm1::ClearFormClick(TObject *Sender)
     VirtualStringTree1->Clear();
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm1::DeleteNoteClick(TObject *Sender)
+{
+//Узнать, какой узел выделен
+	PVirtualNode selectedNode = VirtualStringTree1->FocusedNode;
+
+	if (selectedNode == NULL) return;
+
+	//Получить дерево для редактирования
+	TreeNodeStruct* nodeData = (TreeNodeStruct*) VirtualStringTree1->GetNodeData(selectedNode);
+
+	// Объявляем переменную:
+	sqlite3* Database;
+
+	// Открываем базу данных:
+	int openResult = sqlite3_open16(L"..\\..\\Database\\sqlite3_db.db", &Database);
+	/* Database filename (UTF-16) */
+	// В случае нормального открытия возвращается 0.
+
+	if (openResult == 0)
+	{
+		const char *errorMsg;
+	sqlite3_stmt *pStatement;
+
+	wchar_t size[120];
+	swprintf(size, 120, L"DELETE FROM FIO WHERE id = %d;",nodeData->ID);
+
+	int result = sqlite3_prepare16_v2(Database,size, -1, &pStatement, NULL); // UTF-16
+
+	if(result == SQLITE_OK)
+		{
+		result = sqlite3_step(pStatement);
+		if(result == SQLITE_DONE)
+			{
+			ShowMessage("Note is deleted");
+			}
+		else
+			{
+			ShowMessage("result = "+UnicodeString(result));
+			}
+		}
+	else
+		{
+		errorMsg = sqlite3_errmsg(Database);
+		printf("DB error %s \n", errorMsg);
+		}
+
+
+		sqlite3_finalize(pStatement);
+
+		VirtualStringTree1->BeginUpdate();
+		VirtualStringTree1->DeleteNode(selectedNode);
+		VirtualStringTree1->EndUpdate();
+	}
+	else
+		{
+		ShowMessage("DeleteNoteOpenResult =" +UnicodeString(openResult));
+		}
+}
+//---------------------------------------------------------------------------

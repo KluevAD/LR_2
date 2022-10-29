@@ -19,6 +19,7 @@ __published:	// IDE-managed Components
 	TLabel *MiddleNameLabel;
 	void __fastcall FillTableClick(TObject *Sender);
 	void __fastcall ClearFormClick(TObject *Sender);
+	void __fastcall DeleteNoteClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
@@ -26,4 +27,13 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1 *Form1;
 //---------------------------------------------------------------------------
+
+typedef struct
+{
+	int ID;
+	UnicodeString name;
+	UnicodeString surname;
+	UnicodeString middleName;
+} TreeNodeStruct;
+
 #endif

@@ -81,6 +81,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
+    OnClick = DeleteNoteClick
   end
   object ClearDB: TButton
     Left = 312
