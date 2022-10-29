@@ -138,3 +138,53 @@ void __fastcall TForm1::DeleteNoteClick(TObject *Sender)
 		}
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm1::ClearDBClick(TObject *Sender)
+{
+// Объявляем переменную:
+	sqlite3* Database;
+
+	// Открываем базу данных:
+	int openResult = sqlite3_open16(L"..\\..\\Database\\sqlite3_db.db", &Database);
+	/* Database filename (UTF-16) */
+
+	// В случае нормального открытия возвращается 0.
+
+	if (openResult == 0)
+	{
+		// Подготовка запроса
+	const char *errorMsg;
+	sqlite3_stmt *pStatement;
+
+	int result = sqlite3_prepare16_v2(Database,L"DROP TABLE IF EXISTS FIO;", -1, &pStatement, NULL); // UTF-16
+
+	if(result == SQLITE_OK)
+		{
+		result = sqlite3_step(pStatement);
+
+			if(result == SQLITE_DONE)
+			{
+				ShowMessage("Table's deleted");
+			}
+			else
+			{
+				ShowMessage("result = "+UnicodeString(result));
+			}
+		}
+
+		else
+		{
+			errorMsg = sqlite3_errmsg(Database);
+			printf("DB error %s \n", errorMsg);
+		}
+
+	// Завершение обработки запроса
+	sqlite3_finalize(pStatement);
+	VirtualStringTree1->Clear();
+	}
+
+	else
+	{
+		ShowMessage("DeleteTableOpenResult =" +UnicodeString(openResult));
+	}
+}
+//---------------------------------------------------------------------------
