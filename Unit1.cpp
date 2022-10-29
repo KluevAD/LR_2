@@ -14,6 +14,7 @@ using namespace std;
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
+	VirtualStringTree1->NodeDataSize = sizeof(TreeNodeStruct);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FillTableClick(TObject *Sender)
@@ -187,4 +188,3 @@ void __fastcall TForm1::ClearDBClick(TObject *Sender)
 		ShowMessage("DeleteTableOpenResult =" +UnicodeString(openResult));
 	}
 }
-//---------------------------------------------------------------------------

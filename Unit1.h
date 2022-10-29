@@ -21,6 +21,7 @@ __published:	// IDE-managed Components
 	void __fastcall ClearFormClick(TObject *Sender);
 	void __fastcall DeleteNoteClick(TObject *Sender);
 	void __fastcall ClearDBClick(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
