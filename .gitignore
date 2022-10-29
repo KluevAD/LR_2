@@ -32,3 +32,4 @@
 *.app
 *.gitattributes
 *.gitignore
+*.local
