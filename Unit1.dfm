@@ -51,6 +51,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
+    OnClick = FillTableClick
   end
   object ClearForm: TButton
     Left = 312
@@ -65,6 +66,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
+    OnClick = ClearFormClick
   end
   object DeleteNote: TButton
     Left = 312

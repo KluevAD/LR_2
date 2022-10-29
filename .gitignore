@@ -34,3 +34,9 @@
 *.gitignore
 *.local
 *.~1~
+*.ini
+*.h
+*.~2~
+*.cpp
+*.dfm
+*.h

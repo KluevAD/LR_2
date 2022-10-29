@@ -17,6 +17,8 @@ __published:	// IDE-managed Components
 	TButton *ClearDB;
 	TLabel *Label1;
 	TLabel *MiddleNameLabel;
+	void __fastcall FillTableClick(TObject *Sender);
+	void __fastcall ClearFormClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
