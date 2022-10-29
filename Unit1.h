@@ -11,6 +11,12 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
+	TButton *FillTable;
+	TButton *ClearForm;
+	TButton *DeleteNote;
+	TButton *ClearDB;
+	TLabel *Label1;
+	TLabel *MiddleNameLabel;
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);
